@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "df = read.table(\"inputs.csv\", sep=\",\", head=T)\n\nentARIMA = function(df){\n  df$date = strptime(df$date,\"%Y-%m-%dT%H:%M:%S\", tz = \"GMT\")\n  \n  # reverse the order \n  df  =df[seq(dim(df)[1],2),]\n  \n  fit <- arima(x=df$temperature, order=c(1,0,0))\n  forecasts <- predict(fit, n.ahead=12)\n  \n  # xlim=c(as.POSIXct(min(df$date), format=\"%Y-%m-%d %H:%M:%S\")-2*60*60,\n  #        as.POSIXct(max(df$date), format=\"%Y-%m-%d %H:%M:%S\")+8*60*60)\n  # \n  # plot(x = df$date, y = df$temperature, xlim = xlim)\n  # \n  # lines(x =   seq(\n  #   from=as.POSIXct(max(df$date), format=\"%Y-%m-%d %H:%M:%S\")+1*60*60,\n  #   to=as.POSIXct(max(df$date), format=\"%Y-%m-%d %H:%M:%S\")+12*60*60,\n  #   by=\"hour\"\n  # )        ,\n  #       y=forecasts$pred,col=\"red\")\n  \n  return(as.numeric(forecasts$pred))\n  \n}\n\n\n\n\n",
+    "created" : 1496678116476.000,
+    "dirty" : true,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4209595472",
+    "id" : "6889E807",
+    "lastKnownWriteTime" : 1496678011,
+    "last_content_update" : 1496678121202,
+    "path" : "~/Git_repos/postgrado/doctorado/OpenCPU/eleni/entARIMA.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
